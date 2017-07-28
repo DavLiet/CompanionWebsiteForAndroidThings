@@ -1,0 +1,11 @@
+.firstHeading{
+    color: blue;
+    font-family: 'Nunito', sans-serif;
+}
+
+.description{
+    float: right;
+}
+.bike{
+    float: left;
+}
