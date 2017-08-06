@@ -9,3 +9,9 @@
 .bike{
     float: left;
 }
+
+.cool{
+    background: #ecf0f1;
+    border-radius: 5px;
+    padding: 30px;
+}
