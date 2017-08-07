@@ -15,3 +15,20 @@
     border-radius: 5px;
     padding: 30px;
 }
+
+.header{
+    
+    font-family: 'Overpass', sans-serif;
+    font-weight: bold;
+    color: #6BB9F0;
+
+}
+
+.desc{
+    font-family: 'Overpass', sans-serif;
+}
+
+#map{
+    font-family: 'Overpass', sans-serif;
+    color: #6BB9F0;
+}

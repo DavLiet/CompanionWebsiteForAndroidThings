@@ -156,24 +156,50 @@ firebaseRef.on('value', function(datasnapshot){
 
     
     
-    bikeMarker = new google.maps.Marker({
+     bikeMarker = new google.maps.Marker({
          position: {lat: 29.559839, lng: -95.086824},
           map: map,
-         title: 'Building 1',
-          icon: icon
+         title: 'Building 1'
+          
      });
     
     
-    if(contentString == 0){
-        bikeMarker.setIcon(no_bike);
-         var msg =  ' <div class="cool"><h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>' + '<br />' + numb.toString() + '</div>';
+//    switch(contentString){
+//        case 0:
+//            bikeMarker.setIcon(no_bike);
+//            var msg =  ' <div class="cool"><h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>' + '<br />' + numb.toString() + '</div>';
+//            break;
+//            
+//        case 1:
+//            bikeMarker.setIcon(icon);
+//        var msg =  '<h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: <b>' + contentString.toString() + ' </b> Bikes</p>';
+//            break;
+//            
+//            
+//        default:
+//             bikeMarker.setIcon(icon);
+//        var msg =  '<h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: <b>' + contentString.toString() + ' </b> Bikes</p>';
+//            break;
+//            
+//            
+//    }
+    
+    
+    if(contentString == 1){
+        bikeMarker.setIcon(icon);
+        var msg =  '<h1 id="firstHeading" class="firstHeading">1958 Building</h1>' + '<p>Available: <b>' + contentString.toString() + ' </b> Bike</p>';
+        
     }
     else if(contentString > 1){
+        bikeMarker.setIcon(icon);
         var msg =  '<h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: <b>' + contentString.toString() + ' </b> Bikes</p>';
         
         
     }else{
-        var msg =  '<h1 id="firstHeading" class="firstHeading">1958 Building</h1>' + '<p>Available: <b>' + contentString.toString() + ' </b> Bike</p>';
+        
+        
+        bikeMarker.setIcon(no_bike);
+         var msg =  ' <div class="cool"><h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>' + '<br />' + numb.toString() + '</div>';
     }
     
     
@@ -217,15 +243,18 @@ window.setInterval(function(){
          });
         
         
-        if(contentString == 0){
+        if(contentStringBuilding1 == 0){
         markerBuilding1.setIcon(no_bike);
          var msgBuilding1 =  '<h2 id="firstHeading" class="firstHeading">Building 1</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
         }
         
        else if(contentStringBuilding1 > 1){
             var msgBuilding1 =  '<h2 id="firstHeading" class="firstHeading">Building 1</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding1.toString() + ' Bikes</p>';
-        }else{
+        }else if(contentStringBuilding1 == 1){
             var msgBuilding1 =  '<h1 id="firstHeading" class="firstHeading">Building 1</h1>' + '<p>Available: ' + contentStringBuilding1.toString() + ' Bike</p>';
+        }
+        else{
+            console.log("error");
         }
 
 

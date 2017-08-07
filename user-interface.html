@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+        <script>
+           // Initialize Firebase
+              var config = {
+                apiKey: "AIzaSyBcZP4OcP4ViCoBi5zFqSRvHd9qsn5JV2A",
+                authDomain: "jsc-tracking.firebaseapp.com",
+                databaseURL: "https://jsc-tracking.firebaseio.com",
+                projectId: "jsc-tracking",
+                storageBucket: "jsc-tracking.appspot.com",
+                messagingSenderId: "677544244364"
+              };
+              firebase.initializeApp(config);
+        </script>
+        
+    
+    </head>
+    
+    <body>
+        
+             <script src="firebase.js"></script>
+
+            <form>
+              BikeID:<br>
+              <input id="key" type="text" name="firstname"><br>
+                
+            </form>
+        
+        
+          <input type="submit" onclick="showInput();"><br/>
+        
+        
+        <ul id="list">
+            <li>Building 1</li>
+            <li id = "demo"> </li> 
+        </ul>
+
+    
+    
+    
+    
+    </body>
+
+    
+
+
+</html>
