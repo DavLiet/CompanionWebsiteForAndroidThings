@@ -2,7 +2,11 @@
 
 
 
-
+var markerBuilding1;
+var markerBuilding2;
+var markerBuilding3;
+var markerBuilding4;
+var markerBuilding5;
 
 var map;
 
@@ -132,6 +136,42 @@ function initMap() {
     
   
         
+    
+      markerBuilding1 = new google.maps.Marker({
+             position: {lat:  29.555228, lng: -95.088042},
+              map: map,
+             title: 'Building 1'
+         });
+    
+        
+    markerBuilding2 = new google.maps.Marker({
+             position: {lat:  29.555536, lng: -95.088986},
+              map: map,
+             title: 'Building 2'
+         });
+    markerBuilding3 = new google.maps.Marker({
+             position: {lat:  29.555181, lng: -95.087068},
+              map: map,
+             title: 'Building 3'
+         });
+    
+    markerBuilding4 = new google.maps.Marker({
+             position: {lat:  29.555938, lng: -95.086674},
+              map: map,
+             title: 'Building 4'
+         });
+    
+     markerBuilding5 = new google.maps.Marker({
+             position: {lat:  29.556031, lng: -95.085344},
+              map: map,
+             title: 'Building 5'
+         });
+    
+    
+    
+    
+    
+    
       }
 
 var contentString;
@@ -159,8 +199,8 @@ firebaseRef.on('value', function(datasnapshot){
      bikeMarker = new google.maps.Marker({
          position: {lat: 29.559839, lng: -95.086824},
           map: map,
-         title: 'Building 1'
-          
+         title: 'Building 1',
+          icon: icon
      });
     
     
@@ -185,9 +225,7 @@ firebaseRef.on('value', function(datasnapshot){
 //    }
     
     
-    if(contentString == 1){
-        bikeMarker.setIcon(icon);
-        var msg =  '<h1 id="firstHeading" class="firstHeading">1958 Building</h1>' + '<p>Available: <b>' + contentString.toString() + ' </b> Bike</p>';
+    if(contentString == 0){
         
     }
     else if(contentString > 1){
@@ -196,7 +234,8 @@ firebaseRef.on('value', function(datasnapshot){
         
         
     }else{
-        
+        bikeMarker.setIcon(icon);
+        var msg =  '<h1 id="firstHeading" class="firstHeading">1958 Building</h1>' + '<p>Available: <b>' + contentString.toString() + ' </b> Bike</p>';
         
         bikeMarker.setIcon(no_bike);
          var msg =  ' <div class="cool"><h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>' + '<br />' + numb.toString() + '</div>';
@@ -227,33 +266,32 @@ firebaseRef.on('value', function(datasnapshot){
 
 //Building 1
 
+
+
 window.setInterval(function(){
     var buildingOneRef = firebase.database().ref().child("Building1");
+    
+   
 
     buildingOneRef.on('value', function(datasnapshot){
         
         contentStringBuilding1 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 1
         
         
-        markerBuilding1 = new google.maps.Marker({
-             position: {lat:  29.555228, lng: -95.088042},
-              map: map,
-             title: 'Building 1',
-              icon: icon
-         });
-        
-        
         if(contentStringBuilding1 == 0){
-        markerBuilding1.setIcon(no_bike);
+            markerBuilding1.setIcon(no_bike);
          var msgBuilding1 =  '<h2 id="firstHeading" class="firstHeading">Building 1</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
         }
         
        else if(contentStringBuilding1 > 1){
+           markerBuilding1.setIcon(icon);
             var msgBuilding1 =  '<h2 id="firstHeading" class="firstHeading">Building 1</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding1.toString() + ' Bikes</p>';
         }else if(contentStringBuilding1 == 1){
+            markerBuilding1.setIcon(icon);
             var msgBuilding1 =  '<h1 id="firstHeading" class="firstHeading">Building 1</h1>' + '<p>Available: ' + contentStringBuilding1.toString() + ' Bike</p>';
         }
         else{
+            markerBuilding1.setIcon(icon);
             console.log("error");
         }
 
@@ -270,11 +308,12 @@ window.setInterval(function(){
         markerBuilding1.addListener('click', function(){
             windowBuilding1.open(map,markerBuilding1);
         });
+        
 
     });
     
 
-}, 100);
+}, 500);
 
 
 //Building 2
@@ -285,12 +324,7 @@ window.setInterval(function(){
         
         contentStringBuilding2 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 1
         
-        markerBuilding2 = new google.maps.Marker({
-             position: {lat:  29.555536, lng: -95.088986},
-              map: map,
-             title: 'Building 2',
-              icon: icon
-         });
+        
         
         
          if(contentStringBuilding2 == 0){
@@ -299,8 +333,11 @@ window.setInterval(function(){
         }
         
         else if(contentStringBuilding2 > 1){
+            markerBuilding2.setIcon(icon);
+
             var msgBuilding2 =  '<h2 id="firstHeading" class="firstHeading">Building 2</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding2.toString() + ' Bikes</p>';
         }else{
+            markerBuilding2.setIcon(icon);
             var msgBuilding2 =  '<h1 id="firstHeading" class="firstHeading">Building 2</h1>' + '<p>Available: ' + contentStringBuilding2.toString() + ' Bike</p>';
         }
 
@@ -311,9 +348,6 @@ window.setInterval(function(){
 
 
 
-          
-
-
         markerBuilding2.addListener('click', function(){
             windowBuilding2.open(map,markerBuilding2);
         });
@@ -321,7 +355,7 @@ window.setInterval(function(){
     });
     
 
-}, 100);
+}, 500);
 
 
 
@@ -336,12 +370,7 @@ window.setInterval(function(){
         
         
         
-        markerBuilding3 = new google.maps.Marker({
-             position: {lat:  29.555181, lng: -95.087068},
-              map: map,
-             title: 'Building 3',
-              icon: icon
-         });
+        
         
          if(contentStringBuilding3 == 0){
         markerBuilding3.setIcon(no_bike);
@@ -349,8 +378,12 @@ window.setInterval(function(){
         }
         
         if(contentStringBuilding3 > 1){
+        markerBuilding3.setIcon(icon);
+
             var msgBuilding3 =  '<h2 id="firstHeading" class="firstHeading">Building 3</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding3.toString() + ' Bikes</p>';
         }else{
+         markerBuilding3.setIcon(icon);
+
             var msgBuilding3 =  '<h1 id="firstHeading" class="firstHeading">Building 3</h1>' + '<p>Available: ' + contentStringBuilding3.toString() + ' Bike</p>';
         }
 
@@ -371,47 +404,46 @@ window.setInterval(function(){
     });
     
 
-}, 100);
+}, 500);
 
 
 
 //Building 4
 window.setInterval(function(){
-    var buildingFourRef = firebase.database().ref().child("Building 4");
+    
+   var buildingFourRef = firebase.database().ref().child("Building 4");
 
-     buildingFourRef.on('value', function(datasnapshot){
+    buildingFourRef.on('value', function(datasnapshot){
         
-         var contentStringBuilding4 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 3
-         
-         
-         
-         markerBuilding4 = new google.maps.Marker({
-             position: {lat:  29.555938, lng: -95.086674},
-              map: map,
-             title: 'Building 4',
-              icon: icon
-         });
-         
-         
+        contentStringBuilding4 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 3
+        
+        
+        
+        
+        
+        
          if(contentStringBuilding4 == 0){
         markerBuilding4.setIcon(no_bike);
          var msg =  '<h2 id="firstHeading" class="firstHeading">Building 4</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
         }
-         
         
-        else if(contentStringBuilding4 > 1){
+        if(contentStringBuilding4 > 1){
+        markerBuilding4.setIcon(icon);
+
             var msgBuilding4 =  '<h2 id="firstHeading" class="firstHeading">Building 4</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding4.toString() + ' Bikes</p>';
         }else{
+         markerBuilding4.setIcon(icon);
+
             var msgBuilding4 =  '<h1 id="firstHeading" class="firstHeading">Building 4</h1>' + '<p>Available: ' + contentStringBuilding4.toString() + ' Bike</p>';
         }
 
 
-         var windowBuilding4 = new google.maps.InfoWindow({   //Creates infowindow for Building 1 marker
+          windowBuilding4 = new google.maps.InfoWindow({   //Creates infowindow for Building 1 marker
             content: msgBuilding4
             });
 
 
- 
+
           
 
 
@@ -420,9 +452,8 @@ window.setInterval(function(){
         });
 
     });
-    
 
-}, 100);
+}, 500);
 
 
 
@@ -430,37 +461,38 @@ window.setInterval(function(){
 window.setInterval(function(){
     var buildingFiveRef = firebase.database().ref().child("Building 5");
 
-     buildingFiveRef.on('value', function(datasnapshot){
+    buildingFiveRef.on('value', function(datasnapshot){
         
-         var contentStringBuilding5 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 3
-         
-          markerBuilding5 = new google.maps.Marker({
-             position: {lat:  29.556031, lng: -95.085344},
-              map: map,
-             title: 'Building 5',
-              icon: icon
-         });
-         
-         
-          if(contentStringBuilding5 == 0){
+        contentStringBuilding5 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 3
+        
+        
+        
+        
+        
+        
+         if(contentStringBuilding5 == 0){
         markerBuilding5.setIcon(no_bike);
          var msg =  '<h2 id="firstHeading" class="firstHeading">Building 5</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
         }
         
-        else if(contentStringBuilding5 > 1){
+        if(contentStringBuilding5 > 1){
+        markerBuilding5.setIcon(icon);
+
             var msgBuilding5 =  '<h2 id="firstHeading" class="firstHeading">Building 5</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding5.toString() + ' Bikes</p>';
         }else{
+         markerBuilding5.setIcon(icon);
+
             var msgBuilding5 =  '<h1 id="firstHeading" class="firstHeading">Building 5</h1>' + '<p>Available: ' + contentStringBuilding5.toString() + ' Bike</p>';
         }
 
 
-         var windowBuilding5 = new google.maps.InfoWindow({   //Creates infowindow for Building 1 marker
+          windowBuilding5 = new google.maps.InfoWindow({   //Creates infowindow for Building 1 marker
             content: msgBuilding5
             });
 
- 
- 
-         
+
+
+          
 
 
         markerBuilding5.addListener('click', function(){
@@ -473,29 +505,37 @@ window.setInterval(function(){
 }, 100);
 
 function buildingPicker(){
-    switch(document.getElementById('start').value){
+    switch(document.getElementById('building').value){
         case "Building 1":
             var latlng = markerBuilding1.getPosition();
             map.setCenter(latlng);
             map.setZoom(18);
+            windowBuilding1.open(map,markerBuilding1);
             break;
         
         case "Building 2":
             var latlng = markerBuilding2.getPosition();
             map.setCenter(latlng);
             map.setZoom(18);
+            windowBuilding2.open(map,markerBuilding2);
+
             break;
             
         case "Building 3":
             var latlng = markerBuilding3.getPosition();
             map.setCenter(latlng);
             map.setZoom(18);
+            windowBuilding3.open(map,markerBuilding3);
+
             break;
             
         case "Building 4":
             var latlng = markerBuilding4.getPosition();
             map.setCenter(latlng);
             map.setZoom(18);
+            
+            windowBuilding4.open(map,markerBuilding4);
+
             break;
             
         default:
@@ -509,7 +549,53 @@ function buildingPicker(){
 
 
 
+
+
+
+
+$(document).ready(function(){
+    // Defining the local dataset
+    var cars = ['Building 1', 'Building 2', 'Building 3'];
+    
+    // Constructing the suggestion engine
+    var cars = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cars
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'cars',
+        source: cars
+    }).on('typeahead:selected', function(event, selection) {
+  
+  // the second argument has the info you want
+  buildingPicker();
+        
+         // clearing the selection requires a typeahead method
+  $(this).typeahead('setQuery', '');
+  
  
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

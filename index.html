@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>
+      <script src="bower_components/typeahead.js/dist/typeahead.jquery.min.js"></script>
+      <script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
+      
+      
+      
+      
+      
       <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
       <link rel="stylesheet" href="styles.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -56,7 +66,8 @@
   </head>
   <body >
       
-      
+        <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+
       
     <!--  <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -86,12 +97,14 @@
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
+                
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
                 <a class="navbar-brand page-scroll" href="#page-top">BikeJSC</a>
             </div>
 
@@ -103,13 +116,13 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Find Bikes</a>
+                        <a class="page-scroll" href="index.html">Find Bikes</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">How Does This Work?</a>
+                        <a class="page-scroll" href="specificBikes.html">How Does This Work?</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Bike Maintenence</a>
+                        <a class="page-scroll" href="user-interface.html">Bike Maintenence</a>
                     </li>
                 </ul>
             </div>
@@ -119,13 +132,34 @@
     </nav>
     
       
-      
+     
    
     <div id="map" ></div>
       
       
-         
+         <section id="intro">
+<!--
       <section id="intro">
+            <select align="center" id="start" class="selectpicker" data-live-search="true" onchange="buildingPicker()" >
+        <option value=" ">         </option>
+        <option value="Building 1">Building 1</option>
+        <option value="Building 2">Building 2</option>
+        <option value="Building 3">Building 3</option>
+        <option value="Building 4">Building 4</option>
+    </select>
+-->
+      
+        <br />
+             <div align="center" class="the-basics">
+              
+        <input id = "building" type="text" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter a bikestation here...">
+    </div>
+             
+             
+             
+             
+             
+       
       
             <h1 class="header"  align= "center">300+ free-range bikes. 50 bike stations. 1 NASA Johnson Space Center.</h1>
             <h3 class="desc" align="center">Use the <b id="map">map</b> above to find a free-range bike near you!</h3>
