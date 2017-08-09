@@ -51,8 +51,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
-                <a class="navbar-brand page-scroll" href="#page-top">BikeJSC</a>
+                <a class="navbar-brand page-scroll" href="#page-top"> <img id="earth" align="left" src="earth-50.png" /> </a>
+                <a id="target" class="navbar-brand page-scroll" href="#page-top">BikeJSC</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -124,33 +124,44 @@
         
       
         
-        
+        <br />
+        <br />
+        <br />
      
         
         
         <input type="submit" onclick="findBuilding();"><br/>
         
         
-        
-        <div class="container">
-        <div class="row">
-    <div class="col-4">
-      1 of 3
-    </div>
-    <div class="col-4">
+        <center>
+            
+        <h1 class="desc">Use our Building Picker to find specific bikes around JSC</h1>
+     
+            
        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="buildingPicker" onchange="findBuilding()">
         <option value=" ">  </option>
 
         <option value="Building 1" >Building 1</option>
         <option value="Building 2" >Building 2</option>
         <option value="Building 3" >Building 3</option>
+        <option value="Building 4">Building 4</option>
       </select>
-    </div>
-    <div class="col-4">
-      1 of 3
-    </div>
-  </div>
-            </div>
+            
+            
+            
+             <ul id="one" >
+            </ul>
+<!--
+     <ul id="two" class="list">
+    </ul>
+     <ul id="three" class="list">
+    </ul>
+    <ul id="four" class="list">
+    </ul>
+-->
+            
+            </center>
+    
         
         
         
@@ -161,14 +172,7 @@
         
 
         
-     <ul id="one" >
-    </ul>
-     <ul id="two" class="list">
-    </ul>
-     <ul id="three" class="list">
-    </ul>
-    <ul id="four" class="list">
-    </ul>
+    
     
     
     

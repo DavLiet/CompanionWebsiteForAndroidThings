@@ -7,6 +7,8 @@ var markerBuilding2;
 var markerBuilding3;
 var markerBuilding4;
 var markerBuilding5;
+var markerBuilding7;
+var markerBuilding12;
 
 var map;
 
@@ -167,9 +169,30 @@ function initMap() {
              title: 'Building 5'
          });
     
+     markerBuilding1958 = new google.maps.Marker({
+             position: {lat:  29.561770, lng: -95.086655},
+              map: map,
+             title: 'Building 1958'
+         });
+    
+    markerBuilding7 = new google.maps.Marker({
+             position: {lat:  29.557142, lng: -95.086030},
+              map: map,
+             title: 'Building 7'
+         });
+ 
+    
+
+    markerBuilding12 = new google.maps.Marker({
+             position: {lat:   29.557142, lng: -95.088412},
+              map: map,
+             title: 'Building 12'
+         });
+    
+   
     
     
-    
+     
     
     
       }
@@ -183,85 +206,46 @@ var numberWindow;
 
 //building 1
 
+//Building 2
 window.setInterval(function(){
-    var firebaseP = document.getElementById("txt");
- var firebaseRef = firebase.database().ref().child("BikesAt1958");
-    
+    var building1958 = firebase.database().ref().child("BikesAt1958");
 
-firebaseRef.on('value', function(datasnapshot){
-    firebaseP.innerHTML = datasnapshot.child("NumberBikes").val();
-      contentString = datasnapshot.child("NumberBikes").val();
-    var numb = datasnapshot.child("BikeId").child("IdValue").val();
-    
+    building1958.on('value', function(datasnapshot){
+        
+        contentStringBuilding1958 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 1
+        
+        
+        
+        
+         if(contentStringBuilding1958 == 0){
+        markerBuilding1958.setIcon(no_bike);
+         var msgBuilding1958 =  '<h2 id="firstHeading" class="firstHeading">Building 1958</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
+        }
+        
+        else if(contentStringBuilding1958 > 1){
+            markerBuilding1958.setIcon(icon);
 
-    
-    
-     bikeMarker = new google.maps.Marker({
-         position: {lat: 29.559839, lng: -95.086824},
-          map: map,
-         title: 'Building 1',
-          icon: icon
-     });
-    
-    
-//    switch(contentString){
-//        case 0:
-//            bikeMarker.setIcon(no_bike);
-//            var msg =  ' <div class="cool"><h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>' + '<br />' + numb.toString() + '</div>';
-//            break;
-//            
-//        case 1:
-//            bikeMarker.setIcon(icon);
-//        var msg =  '<h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: <b>' + contentString.toString() + ' </b> Bikes</p>';
-//            break;
-//            
-//            
-//        default:
-//             bikeMarker.setIcon(icon);
-//        var msg =  '<h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: <b>' + contentString.toString() + ' </b> Bikes</p>';
-//            break;
-//            
-//            
-//    }
-    
-    
-    if(contentString == 0){
-        
-    }
-    else if(contentString > 1){
-        bikeMarker.setIcon(icon);
-        var msg =  '<h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: <b>' + contentString.toString() + ' </b> Bikes</p>';
-        
-        
-    }else{
-        bikeMarker.setIcon(icon);
-        var msg =  '<h1 id="firstHeading" class="firstHeading">1958 Building</h1>' + '<p>Available: <b>' + contentString.toString() + ' </b> Bike</p>';
-        
-        bikeMarker.setIcon(no_bike);
-         var msg =  ' <div class="cool"><h2 id="firstHeading" class="firstHeading">1958 Building</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>' + '<br />' + numb.toString() + '</div>';
-    }
-    
-    
-      numberWindow = new google.maps.InfoWindow({
-        content: msg
-    });
-   
-      
-    
-    
-    
-  
-    
-    bikeMarker.addListener('click', function(){
-        numberWindow.open(map,bikeMarker);
+            var msgBuilding1958 =  '<h2 id="firstHeading" class="firstHeading">Building 1958</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding1958.toString() + ' Bikes</p>';
+        }else{
+            markerBuilding1958.setIcon(icon);
+            var msgBuilding1958 =  '<h1 id="firstHeading" class="firstHeading">Building 1958</h1>' + '<p>Available: ' + contentStringBuilding1958.toString() + ' Bike</p>';
+        }
+
+
+          windowBuilding1958 = new google.maps.InfoWindow({   //Creates infowindow for Building 2 marker
+            content: msgBuilding1958
+            });
+
+
+
+        markerBuilding1958.addListener('click', function(){
+            windowBuilding1958.open(map,markerBuilding1958);
+        });
+
     });
     
-    
-     
-});
-    
 
-}, 100);
+}, 500);
 
 
 //Building 1
@@ -504,6 +488,100 @@ window.setInterval(function(){
 
 }, 100);
 
+
+
+
+//Building 5
+window.setInterval(function(){
+    var buildingSevenRef = firebase.database().ref().child("Building 7");
+
+    buildingSevenRef.on('value', function(datasnapshot){
+        
+        contentStringBuilding7 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 3
+        
+        
+        
+        
+        
+        
+         if(contentStringBuilding7 == 0){
+        markerBuilding7.setIcon(no_bike);
+         var msgBuilding7 =  '<h2 id="firstHeading" class="firstHeading">Building 7</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
+        }
+        
+        if(contentStringBuilding7 > 1){
+        markerBuilding7.setIcon(icon);
+
+            var msgBuilding7 =  '<h2 id="firstHeading" class="firstHeading">Building 7</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding7.toString() + ' Bikes</p>';
+        }else{
+         markerBuilding7.setIcon(icon);
+
+            var msgBuilding7 =  '<h1 id="firstHeading" class="firstHeading">Building 7</h1>' + '<p>Available: ' + contentStringBuilding7.toString() + ' Bike</p>';
+        }
+
+
+          windowBuilding7 = new google.maps.InfoWindow({   //Creates infowindow for Building 1 marker
+            content: msgBuilding7
+            });
+
+
+
+          
+
+
+        markerBuilding7.addListener('click', function(){
+            windowBuilding7.open(map,markerBuilding7);
+        });
+
+    });
+    
+
+}, 500);
+
+
+
+//Building 5
+window.setInterval(function(){
+    
+    var building12 = firebase.database().ref().child("Building 12");
+
+    building12.on('value', function(datasnapshot){
+        
+        contentStringBuilding12 = datasnapshot.child("NumberBikes").val(); //gets the number of bikes for Building 1
+        
+        
+        
+        
+         if(contentStringBuilding12 == 0){
+        markerBuilding12.setIcon(no_bike);
+         var msgBuilding12 =  '<h2 id="firstHeading" class="firstHeading">Building 12</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    No Bikes Available</p>';
+        }
+        
+        else if(contentStringBuilding12 > 1){
+            markerBuilding12.setIcon(icon);
+
+            var msgBuilding12 =  '<h2 id="firstHeading" class="firstHeading">Building 12</h2>' + '<img class="bike" src="Webp.net-resizeimage (13).png">' +  '<p class = "description">    Available: ' + contentStringBuilding12.toString() + ' Bikes</p>';
+        }else{
+            markerBuilding12.setIcon(icon);
+            var msgBuilding12 =  '<h1 id="firstHeading" class="firstHeading">Building 12</h1>' + '<p>Available: ' + contentStringBuilding12.toString() + ' Bike</p>';
+        }
+
+
+          windowBuilding12 = new google.maps.InfoWindow({   //Creates infowindow for Building 2 marker
+            content: msgBuilding12
+            });
+
+
+
+        markerBuilding12.addListener('click', function(){
+            windowBuilding12.open(map,markerBuilding12);
+        });
+
+    });
+    
+
+}, 500);
+
 function buildingPicker(){
     switch(document.getElementById('building').value){
         case "Building 1":
@@ -537,6 +615,44 @@ function buildingPicker(){
             windowBuilding4.open(map,markerBuilding4);
 
             break;
+        
+        case "Building 5":
+            var latlng = markerBuilding5.getPosition();
+            map.setCenter(latlng);
+            map.setZoom(18);
+            
+            windowBuilding5.open(map,markerBuilding5);
+
+            break;
+            
+            
+        case "Building 1958":
+            var latlng = markerBuilding1958.getPosition();
+            map.setCenter(latlng);
+            map.setZoom(18);
+            
+            windowBuilding1958.open(map,markerBuilding1958);
+
+            break;
+            
+            
+        case "Building 8":
+            var latlng = markerBuilding7.getPosition();
+            map.setCenter(latlng);
+            map.setZoom(18);
+            
+            windowBuilding7.open(map,markerBuilding7);
+
+            break;
+            
+        case "Building 12":
+            var latlng = markerBuilding12.getPosition();
+            map.setCenter(latlng);
+            map.setZoom(18);
+            
+            windowBuilding12.open(map,markerBuilding12);
+
+            break;
             
         default:
             var latlng = {lat: 29.559839, lng: -95.086824};
@@ -555,7 +671,7 @@ function buildingPicker(){
 
 $(document).ready(function(){
     // Defining the local dataset
-    var cars = ['Building 1', 'Building 2', 'Building 3'];
+    var cars = ['Building 1', 'Building 2', 'Building 3', 'Building 4', 'Building 5', 'Building 1958', 'Building 7','Building 12'];
     
     // Constructing the suggestion engine
     var cars = new Bloodhound({

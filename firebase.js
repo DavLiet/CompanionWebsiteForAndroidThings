@@ -40,12 +40,12 @@ function findBuilding(){
         case 'Building 2':
             var building1Ref= firebase.database().ref().child("Building 2**").child("BikeId");
             building1Ref.on('value', function(snapshot) {
-                document.getElementById("two").innerHTML = " ";
+                document.getElementById("one").innerHTML = " ";   //should be two
 
                 snapshot.forEach(function(childSnapshot) {
                     var childKey = childSnapshot.key;          //tells user all the random keys
                     var childData = childSnapshot.val();
-                    var list = document.getElementById('two');
+                    var list = document.getElementById('one');    //should be two
                     var entry = document.createElement('li');
                     entry.appendChild(document.createTextNode(childData));
                     list.appendChild(entry);
@@ -63,12 +63,12 @@ function findBuilding(){
           case 'Building 3':
             var building1Ref= firebase.database().ref().child("Building 3**").child("BikeId");
             building1Ref.on('value', function(snapshot) {
-                document.getElementById("three").innerHTML = " ";
+                document.getElementById("one").innerHTML = " ";  //should be three 
 
                 snapshot.forEach(function(childSnapshot) {
                     var childKey = childSnapshot.key;          //tells user all the random keys
                     var childData = childSnapshot.val();
-                    var list = document.getElementById('three');
+                    var list = document.getElementById('one');   //should be three
                     var entry = document.createElement('li');
                     entry.appendChild(document.createTextNode(childData));
                     list.appendChild(entry);
